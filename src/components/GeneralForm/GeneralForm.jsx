@@ -1,6 +1,5 @@
 import React from 'react';
 import './GeneralForm.css';
-import logo from '../../images/logo.svg';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useFormAndValidation } from '../../hooks/useFormAndValidation';
 
@@ -17,7 +16,10 @@ const GeneralForm = ({ setLoggedIn }) => {
     resetForm();
   };
 
-  const handleRoute = () => {
+  const handleRouteLanding = () => {
+    navigate('/');
+  };
+  const handleRouteAuth = () => {
     if (isRegisterPage) {
       navigate('/signin');
     } else {
@@ -26,22 +28,20 @@ const GeneralForm = ({ setLoggedIn }) => {
     }
   };
   return (
-    <section className='generalForm'>
-      <Link to='/' className='generalForm__link_type_logo'>
-        <img className='generalForm__logo' src={logo} alt='логотип' />
-      </Link>
-      <h1 className='generalForm__title'>
+    <section className='general-form'>
+      <div className='general-form__logo' onClick={handleRouteLanding}></div>
+      <h1 className='general-form__title'>
         {isRegisterPage ? 'Добро пожаловать!' : 'Рады видеть!'}
       </h1>
-      <form className='generalForm__form' onSubmit={handleSubmit}>
+      <form className='general-form__form' onSubmit={handleSubmit}>
         {isRegisterPage ? (
-          <label className='generalForm__label'>
+          <label className='general-form__label'>
             Имя
             <input
               className={
                 errors.name
-                  ? 'generalForm__input generalForm__input_errors'
-                  : 'generalForm__input'
+                  ? 'general-form__input general-form__input_errors'
+                  : 'general-form__input'
               }
               type='text'
               name='name'
@@ -52,18 +52,18 @@ const GeneralForm = ({ setLoggedIn }) => {
               maxLength='30'
               required
             />
-            <span className='generalForm__errors'>{errors.name}</span>
+            <span className='general-form__errors'>{errors.name}</span>
           </label>
         ) : (
           <></>
         )}
-        <label className='generalForm__label'>
+        <label className='general-form__label'>
           E-mail
           <input
             className={
               errors.email
-                ? 'generalForm__input generalForm__input_errors'
-                : 'generalForm__input'
+                ? 'general-form__input general-form__input_errors'
+                : 'general-form__input'
             }
             name='email'
             type='email'
@@ -73,15 +73,15 @@ const GeneralForm = ({ setLoggedIn }) => {
             autoComplete='email'
             required
           />
-          <span className='generalForm__errors'>{errors.email}</span>
+          <span className='general-form__errors'>{errors.email}</span>
         </label>
-        <label className='generalForm__label'>
+        <label className='general-form__label'>
           Пароль
           <input
             className={
               errors.password
-                ? 'generalForm__input generalForm__input_errors'
-                : 'generalForm__input'
+                ? 'general-form__input general-form__input_errors'
+                : 'general-form__input'
             }
             name='password'
             type='password'
@@ -91,29 +91,29 @@ const GeneralForm = ({ setLoggedIn }) => {
             autoComplete='current-password'
             required
           />
-          <span className='generalForm__errors'>{errors.password}</span>
+          <span className='general-form__errors'>{errors.password}</span>
         </label>
         <button
           className={
             isRegisterPage
-              ? 'generalForm__button'
-              : 'generalForm__button generalForm__button_type_register'
+              ? 'general-form__button'
+              : 'general-form__button general-form__button_type_register'
           }
           type='submit'
           disabled={!isValid}
-          onClick={handleRoute}
+          onClick={handleRouteAuth}
         >
           {isRegisterPage ? 'Зарегистрироваться' : 'Войти'}
         </button>
       </form>
-      <div className='generalForm__container'>
-        <p className='generalForm__text'>
+      <div className='general-form__container'>
+        <p className='general-form__text'>
           {isRegisterPage
             ? 'Уже зарегистрированы?'
             : 'Ещё не зарегистрированы?'}
         </p>
         <Link
-          className='generalForm__link'
+          className='general-form__link'
           to={isRegisterPage ? '/signin' : '/signup'}
         >
           {isRegisterPage ? 'Войти' : 'Регистрация'}
