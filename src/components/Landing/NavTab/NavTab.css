@@ -21,6 +21,7 @@
   line-height: 16px;
   text-decoration-line: underline;
   transition: opacity .2s;
+  cursor: pointer;
 }
 
 .navTab__link:hover {
