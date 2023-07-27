@@ -1,0 +1,183 @@
+.student {
+  padding: 0 70px;
+  max-width: 1140px;
+}
+
+.student__title {
+  margin: 0;
+  padding: 112px 0 23px 0;
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: -0.88px;
+  border-bottom: solid 1px #DADADA;
+}
+
+.student__container {
+  padding: 66px 0 100px;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: 77px 45px 188px auto;
+  column-gap: 50px;
+  grid-template-areas: 
+    'name photo'
+    'profession photo'
+    'about photo'
+    'link photo';
+  justify-content: space-between;
+}
+
+.student__name {
+  margin: 0;
+  max-width: 600px;
+  font-size: 50px;
+  font-weight: 400;
+  line-height: 58px;
+  letter-spacing: -2px;
+  grid-area: name;
+}
+
+.student__profession {
+  margin: 0;
+  max-width: 600px;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 20px;
+  grid-area: profession;
+}
+
+.student__about {
+  margin: 0;
+  max-width: 600px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  grid-area: about;
+}
+
+.student__photo {
+  background-repeat: no-repeat;
+  background-size: cover;
+  grid-area: photo;
+}
+
+.student__link-repo {
+  margin: 0;
+  max-width: 600px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  text-decoration: none;
+  transition: opacity .2s;
+  grid-area: link;
+}
+
+.student__link-repo:hover {
+  opacity: .7;
+}
+
+@media screen and (max-width: 768px) {
+  .student {
+    padding: 0 50px;
+  }
+
+  .student__title {
+    padding: 93px 0 23px 0;
+  }
+
+  .student__container {
+    padding: 66px 0 90px;
+    grid-template-rows: 56px 38px 195px auto;
+  }
+  
+  .student__name {
+    max-width: 364px;
+    font-size: 40px;
+    line-height: 40px;
+    letter-spacing: -1.6px;
+  }
+
+  .student__profession {
+    max-width: 364px;
+    min-height: 18px;
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .student__about {
+    max-width: 364px;
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .student__photo {
+    width: 255px;
+    height: 307px;
+  }
+  .student__link-repo {
+    max-width: 364px;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .student__container {
+    margin: 0 auto;
+    max-width: 292px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .student__name {
+    padding-bottom: 20px;
+  }
+
+  .student__profession {
+    padding-bottom: 20px;
+  }
+
+  .student__about {
+    padding-bottom: 40px;
+  }
+  
+  .student__photo {
+   padding-bottom: 40px;
+   width: 292px;
+   height: 352px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .student {
+    padding: 0 14px;
+  }
+  .student__title {
+    padding: 128px 0 27px;
+    font-size: 18px;
+    letter-spacing: -0.72px;
+  }
+
+  .student__container {
+    padding: 60px 0 57px;
+  }
+
+  .student__name {
+    padding-bottom: 17px;
+    font-size: 30px;
+    letter-spacing: -1.2px;
+  }
+
+  .student__profession {
+    padding-bottom: 18px;
+    font-size: 11px;
+    line-height: 16px;
+  }
+
+  .student__about {
+    padding-bottom: 41px;
+    font-size: 11px;
+    line-height: 16px;
+  }
+
+  .student__photo {
+    padding-bottom: 39px;
+  }
+}

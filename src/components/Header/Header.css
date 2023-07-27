@@ -1,0 +1,34 @@
+.header {
+  margin: 0 auto;
+  padding: 0 70px;
+  min-height: 73px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__theme_sapphire {
+  background-color: #073042;
+}
+
+.header__logo {
+  object-position: center;
+  object-fit: cover;
+  transition: opacity .2s;
+}
+
+.header__logo:hover {
+  opacity: .7;
+}
+
+@media screen and (max-width: 1200px) {
+  .header {
+    padding: 0 30px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .header {
+    padding: 0 14px;
+  }
+}

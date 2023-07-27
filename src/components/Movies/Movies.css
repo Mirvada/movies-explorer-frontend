@@ -1,0 +1,26 @@
+.movies {
+  margin: 0 auto;
+  padding-bottom: 84px;
+  max-width: 1140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media screen and (max-width: 1279px) {
+  .movies {
+    padding: 0 30px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .movies {
+    padding-bottom: 84px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .movies {
+    padding: 0 10px;
+  }
+}
