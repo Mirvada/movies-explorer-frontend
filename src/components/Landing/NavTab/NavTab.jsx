@@ -4,12 +4,12 @@ import './NavTab.css';
 
 const NavTab = () => {
   return (
-    <nav className='navTab'>
-      <ul className='navTab__list'>
+    <nav className='nav-tab'>
+      <ul className='nav-tab__list'>
         <li>
           <Link
             to='project'
-            className='navTab__link'
+            className='nav-tab__link'
             smooth={true}
             duration={400}
           >
@@ -19,7 +19,7 @@ const NavTab = () => {
         <li>
           <Link
             to='techs'
-            className='navTab__link'
+            className='nav-tab__link'
             smooth={true}
             duration={400}
           >
@@ -29,7 +29,7 @@ const NavTab = () => {
         <li>
           <Link
             to='student'
-            className='navTab__link'
+            className='nav-tab__link'
             smooth={true}
             duration={400}
           >
