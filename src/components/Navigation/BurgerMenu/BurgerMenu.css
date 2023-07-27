@@ -1,0 +1,133 @@
+.menu {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  right: 0;
+  transform: translateX(100%);
+  transition: all .3s;
+}
+
+.menu_active {
+  transform: translateX(0);
+}
+
+.menu__button-close {
+/*  padding: 0;*/
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  top: 27px;
+  right: 27px;
+  background-image: url(../../../images/icon_menu-close.svg);
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  transition: opacity .2s;
+}
+
+.menu__button-close:hover {
+  opacity: .8;
+}
+
+.menu__blur {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background-color: rgba(0, 0, 0, .3);
+}
+
+.menu__content {
+  margin: 0 0 0 auto;
+  width: 520px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #202020;
+  transition: all .3s;
+}
+
+.menu__list {
+  margin-top: 160px;
+  padding: 0;
+  list-style: none;
+}
+
+.menu__item {
+  padding-bottom: 30px;
+  text-align: center;
+}
+
+.menu__item:last-child {
+  padding-bottom: 0;
+}
+
+.menu__link {
+  text-decoration: none;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  transition: opacity .2s;
+}
+
+.menu__link:hover {
+  opacity: .7;
+}
+
+.menu__link_active {
+  padding-bottom: 4px;
+  border-bottom: 2px solid #fff;
+}
+
+.menu__link_type_profile {
+  padding-left: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 95px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 12px;
+}
+
+.menu__icon-link {
+  margin-left: 7px;
+  padding: 6px;
+  background-color: #313131;
+  border-radius: 50%;
+  border: 1px solid #313131;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@media screen and (max-width: 760px) {
+  .menu__content {
+    width: 100%;
+  }
+  
+  .menu__button-close {
+    top: 17px;
+    right: 18px;
+  }
+
+  .menu__list {
+    margin-top: 146px;
+  }
+
+  .menu__item {
+    padding-bottom: 26px;
+  }
+
+  .menu__link_active {
+    padding-bottom: 6px;
+  }
+
+  .menu__link_type_profile {
+    margin-bottom: 50px;
+  } 
+}

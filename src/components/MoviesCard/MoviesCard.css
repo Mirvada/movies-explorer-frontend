@@ -1,0 +1,134 @@
+.movie {
+  width: 364px;
+  min-height: 281px;
+  background-color: #222222;
+  border-radius: 6px;
+  box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.08);
+  list-style: none;
+}
+
+.movie__preview {
+  max-width: 364px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.movie__wrapper {
+  padding: 6px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.movie__name {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.movie__button {
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: opacity .2s;
+}
+
+.movie__button_type_like {
+  background-image: url(../../images/icon-like.svg);
+}
+
+.movie__button_active {
+  background-image: url(../../images/icon-like-active.svg);
+}
+
+.movie__button_type_delete {
+  opacity: 0;
+  background-image: url(../../images/icon-del.svg);
+}
+
+.movie__button:hover {
+  opacity: .8;
+}
+
+.movie__duration {
+  margin: 0;
+  padding: 0px 16px;
+  color: #8B8B8B;
+  font-size: 11px;
+  font-weight: 400;
+}
+
+@media screen and (max-width: 1200px) {
+  .movie {
+    width: 339px;
+    min-height: 262px;
+  }
+
+  .movie__preview {
+    height: 190px;
+  }
+
+  .movie__wrapper {
+    padding: 4px 14px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .movie__name {
+    max-width: 260px;
+  }
+}
+
+@media (hover: hover) {
+  .movie__conteiner {
+    cursor: pointer;
+  }
+  
+  .movie__conteiner:hover .movie__button_type_delete {
+    opacity: 1;
+  }
+}
+
+@media (hover: none) {
+  .movie__button_type_delete {
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width: 370px) {
+  .movie {
+    width: 300px;
+    min-height: 237px;
+  }
+
+  .movie__preview {
+    height: 168px;
+  }
+
+  .movie__wrapper {
+    padding-bottom: 0px;
+  }
+  .movie__name {
+    font-size: 12px;
+  }
+
+  .movie__button {
+    width: 23px;
+    height: 30px;
+  }
+
+  .movie__duration {
+    font-size: 10px;
+    padding: 0 14px;
+  }
+}

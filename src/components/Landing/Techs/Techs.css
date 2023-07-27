@@ -1,0 +1,117 @@
+.techs {
+  padding: 0 70px;
+  min-height: 625px;
+  background-color: #272727;
+}
+
+.techs__title {
+  margin: 0;
+  padding: 102px 0 23px 0;
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: -0.88px;
+  border-bottom: solid 1px #DADADA;
+}
+
+.techs__subtitle {
+  margin: 0;
+  padding: 90px 0 26px;
+  font-size: 50px;
+  font-weight: 400;
+  line-height: 58px;
+  letter-spacing: -2px;
+  text-align: center;
+}
+
+.techs__text {
+  margin: 0 auto;
+  padding: 0 0 100px;
+  max-width: 460px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.56px;
+  text-align: center;
+}
+
+.techs__list {
+  margin: 0 auto;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, min(90px));
+  justify-content: center;
+  gap: 10px;
+  list-style: none;
+}
+
+.techs__item {
+  padding: 21px 0;
+  border-radius: 10px;
+  background: #303030;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.56px;
+}
+
+@media screen and (max-width: 768px) {
+  .techs {
+    padding: 0 50px;
+    min-height: 567px;
+  }
+
+  .techs__title {
+    padding: 93px 0 23px 0;
+  }
+
+  .techs__subtitle {
+    padding: 80px 0 22px;
+  }
+
+  .techs__text {
+    padding: 0 0 83px;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: -0.48px;
+  }
+
+  .techs__list {
+    grid-template-columns: repeat(auto-fit, min(84px));
+  }
+  .techs__item {
+    font-size: 12px;
+    letter-spacing: -0.48px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .techs {
+    padding: 0 18px;
+    min-height: 651px;
+    background-color: transparent;
+  }
+  .techs__title {
+    padding: 128px 0 28px 0;
+    font-size: 18px;
+    letter-spacing: -0.72px;
+    border-bottom: solid 1px #000;
+  }
+
+  .techs__subtitle {
+    padding: 47px 0 13px;
+    font-size: 30px;
+    letter-spacing: -1.2px;
+  }
+
+  .techs__text {
+    padding: 0 0 50px;
+    font-size: 11px;
+    line-height: 16px;
+    letter-spacing: -0.44px;
+  }
+
+  .techs__list {
+    padding: 0 50px;
+    gap: 12px;
+  }
+}

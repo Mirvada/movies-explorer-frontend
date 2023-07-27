@@ -1,0 +1,152 @@
+.aboutProject {
+  padding: 0 70px;
+  max-width: 1140px;
+  min-height: 608px;
+}
+
+.aboutProject__title {
+  margin: 0;
+  padding: 112px 0 23px 0;
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: -0.88px;
+  border-bottom: solid 1px #DADADA;
+}
+
+.aboutProject__container {
+  padding: 71px 0 110px 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 52px;
+}
+
+.aboutProject__wripper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 26px;
+}
+
+.aboutProject__subtitle {
+  margin: 0;
+  padding: 0;
+  max-width: 550px;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: -0.8px;
+}
+
+.aboutProject__text {
+  margin: 0;
+  padding: 0;
+  max-width: 550px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.aboutProject__progressBar {
+  display: grid;
+  grid-template-columns: 20% 80%;
+  grid-template-rows: 36px;
+  text-align: center;
+  align-items: center;
+}
+
+.aboutProject__indicator {
+  margin: 0;
+  padding: 10px;
+  background-color: #303030;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.aboutProject__indicator_type_complited {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 400;
+  background-color: #3DDC84;
+  color: #000;
+}
+
+.aboutProject__captcha {
+  margin: 0;
+  padding-top: 14px;
+  color: #8B8B8B;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 17px;
+}
+
+@media screen and (max-width: 768px) {
+  .aboutProject {
+    padding: 0 50px;
+    min-height: 585px;
+  }
+
+  .aboutProject__title {
+    padding: 93px 0 23px 0;
+  }
+
+  .aboutProject__container {
+    padding: 70px 0 93px 0;
+    gap: 36px;
+  }
+
+  .aboutProject__wripper {
+    gap: 24px;
+  }
+
+  .aboutProject__text {
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .aboutProject__progressBar {
+    grid-template-columns: 21% 79%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .aboutProject {
+    padding: 0 18px;
+  }
+
+  .aboutProject__title {
+    padding: 70px 0 28px 0;
+    font-size: 18px;
+    letter-spacing: -0.72px;
+  }
+
+  .aboutProject__container {
+    padding: 63px 0 55px;
+    flex-direction: column;
+    gap: 57px;
+  }
+
+  .aboutProject__wripper {
+    gap: 18px
+  }
+  .aboutProject__subtitle {
+    font-size: 18px;
+    letter-spacing: -0.72px;
+  }
+  .aboutProject__text {
+    font-size: 11px;
+    line-height: 16px;
+  }
+
+  .aboutProject__progressBar {
+    grid-template-columns: 35% 65%;
+    grid-template-rows: 41px;
+  }
+
+  .aboutProject__indicator {
+    padding: 12px;
+    font-size: 11px;
+  }
+
+  .aboutProject__captcha {
+    padding-top: 7px;
+    font-size: 11px;
+  }
+}
