@@ -7,10 +7,12 @@ import Footer from '../Footer/Footer';
 const Movies = () => {
   return (
     <>
-      <section className='movies'>
-        <SearchForm />
-        <MoviesCardList />
-      </section>
+      <main>
+        <section className='movies'>
+          <SearchForm />
+          <MoviesCardList />
+        </section>
+      </main>
       <Footer />
     </>
   );
