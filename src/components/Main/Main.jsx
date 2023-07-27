@@ -7,13 +7,9 @@ const Main = ({ loggedIn, setLoggedIn }) => {
   return (
     <main className='main'>
       {loggedIn ? (
-        <>
-          <Movies loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
-        </>
+        <Movies loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
       ) : (
-        <>
-          <Landing />
-        </>
+        <Landing />
       )}
     </main>
   );
