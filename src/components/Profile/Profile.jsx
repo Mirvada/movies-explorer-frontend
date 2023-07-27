@@ -2,7 +2,7 @@ import React from 'react';
 import './Profile.css';
 import { useFormAndValidation } from '../../hooks/useFormAndValidation';
 
-const Profile = ({ loggedIn, setLoggedIn, onSignOut }) => {
+const Profile = ({ onSignOut }) => {
   const { values, handleChange, errors, isValid, resetForm } =
     useFormAndValidation();
 
@@ -51,7 +51,7 @@ const Profile = ({ loggedIn, setLoggedIn, onSignOut }) => {
           />
           <span className='profile__errors'>{errors.email}</span>
         </label>
-        <button className='profile__button' type='button' disabled={!isValid}>
+        <button className='profile__button' type='submit' disabled={!isValid}>
           Редактировать
         </button>
       </form>
