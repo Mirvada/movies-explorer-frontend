@@ -6,9 +6,9 @@ const NavBar = () => {
   const [menuActive, setMenuArctive] = useState(false);
   return (
     <>
-      <nav className='navBar'>
+      <nav className='nav-bar'>
         <button
-          className='navBar__icon'
+          className='nav-bar__icon'
           onClick={() => setMenuArctive(!menuActive)}
           type='button'
         />
