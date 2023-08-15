@@ -32,6 +32,7 @@ const SavedMovies = ({ movies, savedMovies, handleDeleteMovie, isLoading }) => {
           onSubmit={handleSubmit}
           error={error}
           isSavedPage={true}
+          isSearchLoading={isSearchLoading}
         />
         {isLoading ? (
           <Preloader />

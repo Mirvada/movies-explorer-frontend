@@ -104,7 +104,11 @@ const Profile = ({ onSignOut, onUpdateUser, isLoading }) => {
         {isLoading ? (
           <Preloader />
         ) : (
-          <button className='profile__button' type='submit' disabled={!isValid}>
+          <button
+            className='profile__button'
+            type='submit'
+            disabled={!isValid || isLoading}
+          >
             Редактировать
           </button>
         )}

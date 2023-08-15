@@ -10,6 +10,7 @@ const SearchForm = (props) => {
     values,
     onSubmit,
     error,
+    isSearchLoading,
   } = props;
 
   const handleSubmit = (evt) => {
@@ -32,12 +33,17 @@ const SearchForm = (props) => {
           autoComplete='off'
           required
         />
-        <button className='searchForm__button' type='submit' />
+        <button
+          className='searchForm__button'
+          type='submit'
+          disabled={isSearchLoading}
+        />
       </label>
       <FilterCheckbox
         values={values}
         onChange={handleChangeCheckbox}
         isSavedPage={isSavedPage}
+        isSearchLoading={isSearchLoading}
       />
     </form>
   );

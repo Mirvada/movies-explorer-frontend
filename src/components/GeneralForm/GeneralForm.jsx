@@ -117,7 +117,7 @@ const GeneralForm = ({ onRegister, onLogin, isLoading }) => {
                 : 'general-form__button general-form__button_type_register'
             }
             type='submit'
-            disabled={!isValid}
+            disabled={!isValid || isLoading}
           >
             {isRegisterPage ? 'Зарегистрироваться' : 'Войти'}
           </button>

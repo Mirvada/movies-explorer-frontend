@@ -40,6 +40,7 @@ const Movies = ({
             handleChangeCheckbox={handleChangeCheckbox}
             onSubmit={handleSubmit}
             error={error}
+            isSearchLoading={isSearchLoading}
           />
           {isLoading ? (
             <Preloader />
