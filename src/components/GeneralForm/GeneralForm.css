@@ -15,12 +15,12 @@
   object-fit: cover;
   object-position: center;
   cursor: pointer;
-  transition: opacity .2s;
+  transition: opacity 0.2s;
 }
 
 .general-form__logo:hover {
-  opacity: .7;
-} 
+  opacity: 0.7;
+}
 
 .general-form__title {
   margin: 0;
@@ -38,7 +38,7 @@
 .general-form__label {
   display: flex;
   flex-direction: column;
-  color: #8B8B8B;
+  color: #8b8b8b;
   font-size: 10px;
   font-weight: 400;
 }
@@ -60,14 +60,14 @@
 }
 
 .general-form__input_errors {
-  color: #EE3465;
+  color: #ee3465;
 }
 
 .general-form__errors {
   min-height: 24px;
   display: flex;
   align-items: center;
-  color: #EE3465;
+  color: #ee3465;
   font-size: 10px;
   font-weight: 400;
 }
@@ -78,13 +78,13 @@
   max-width: 396px;
   min-height: 45px;
   border-radius: 3px;
-  background-color: #4285F4;
+  background-color: #4285f4;
   color: #fff;
   border: none;
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
-  transition: opacity .2s;
+  transition: opacity 0.2s;
 }
 
 .general-form__button_type_register {
@@ -92,12 +92,13 @@
 }
 
 .general-form__button:not([disabled]):hover {
-  opacity: .8;
+  opacity: 0.8;
 }
 
 .general-form__button:disabled {
   cursor: default;
-  opacity: .3;
+  background-color: #424242;
+  opacity: 0.3;
 }
 
 .general-form__container {
@@ -110,21 +111,21 @@
 .general-form__text {
   margin: 0;
   padding: 0;
-  color: #8B8B8B;
+  color: #8b8b8b;
   font-size: 14px;
   font-weight: 400;
 }
 
 .general-form__link {
   text-decoration: none;
-  color: #4285F4;
+  color: #4285f4;
   font-size: 14px;
   font-weight: 400;
-  transition: opacity .2s;
+  transition: opacity 0.2s;
 }
 
 .general-form__general-form-link:hover {
-  opacity: .7;
+  opacity: 0.7;
 }
 
 @media screen and (max-width: 768px) {
@@ -140,7 +141,7 @@
 
   .general-form__title {
     padding-bottom: 82px;
-    text-align: center;    
+    text-align: center;
   }
 
   .general-form {

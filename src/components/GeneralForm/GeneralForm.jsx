@@ -2,31 +2,44 @@ import React from 'react';
 import './GeneralForm.css';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useFormAndValidation } from '../../hooks/useFormAndValidation';
+import Preloader from '../Preloader/Preloader';
+import { REGEX_EMAIL } from '../../utils/config';
 
-const GeneralForm = ({ setLoggedIn }) => {
+const GeneralForm = ({ onRegister, onLogin, isLoading }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const isRegisterPage = location.pathname === '/signup';
-
-  const { values, handleChange, errors, isValid, resetForm } =
+  const { values, handleChange, errors, setErrors, isValid, setIsValid } =
     useFormAndValidation();
-
-  const handleSubmit = (evt) => {
-    evt.preventDefault();
-    resetForm();
-  };
 
   const handleRouteLanding = () => {
     navigate('/');
   };
-  const handleRouteAuth = () => {
-    if (isRegisterPage) {
-      navigate('/signin');
-    } else {
-      setLoggedIn(true);
-      navigate('/movies');
+
+  const handleChangeEmail = (evt) => {
+    handleChange(evt);
+
+    const { name, value } = evt.target;
+
+    if (name === 'email' && !REGEX_EMAIL.test(value)) {
+      setIsValid(false);
+      setErrors((prevState) => ({
+        ...prevState,
+        email: 'Почта должна быть в формате: pochta@domen.ru',
+      }));
     }
   };
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+
+    if (isRegisterPage) {
+      onRegister(values.email, values.password, values.name);
+    } else {
+      onLogin(values.email, values.password);
+    }
+  };
+
   return (
     <section className='general-form'>
       <div className='general-form__logo' onClick={handleRouteLanding}></div>
@@ -68,7 +81,7 @@ const GeneralForm = ({ setLoggedIn }) => {
             name='email'
             type='email'
             value={values.email ?? ''}
-            onChange={handleChange}
+            onChange={handleChangeEmail}
             placeholder='Введите email.'
             autoComplete='email'
             required
@@ -89,36 +102,46 @@ const GeneralForm = ({ setLoggedIn }) => {
             onChange={handleChange}
             placeholder='Введите пароль.'
             autoComplete='current-password'
+            minLength='6'
             required
           />
           <span className='general-form__errors'>{errors.password}</span>
         </label>
-        <button
-          className={
-            isRegisterPage
-              ? 'general-form__button'
-              : 'general-form__button general-form__button_type_register'
-          }
-          type='submit'
-          disabled={!isValid}
-          onClick={handleRouteAuth}
-        >
-          {isRegisterPage ? 'Зарегистрироваться' : 'Войти'}
-        </button>
+        {isLoading ? (
+          <Preloader />
+        ) : (
+          <button
+            className={
+              isRegisterPage
+                ? 'general-form__button'
+                : 'general-form__button general-form__button_type_register'
+            }
+            type='submit'
+            disabled={!isValid}
+          >
+            {isRegisterPage ? 'Зарегистрироваться' : 'Войти'}
+          </button>
+        )}
       </form>
-      <div className='general-form__container'>
-        <p className='general-form__text'>
-          {isRegisterPage
-            ? 'Уже зарегистрированы?'
-            : 'Ещё не зарегистрированы?'}
-        </p>
-        <Link
-          className='general-form__link'
-          to={isRegisterPage ? '/signin' : '/signup'}
-        >
-          {isRegisterPage ? 'Войти' : 'Регистрация'}
-        </Link>
-      </div>
+      {isLoading ? (
+        ''
+      ) : (
+        <>
+          <div className='general-form__container'>
+            <p className='general-form__text'>
+              {isRegisterPage
+                ? 'Уже зарегистрированы?'
+                : 'Ещё не зарегистрированы?'}
+            </p>
+            <Link
+              className='general-form__link'
+              to={isRegisterPage ? '/signin' : '/signup'}
+            >
+              {isRegisterPage ? 'Войти' : 'Регистрация'}
+            </Link>
+          </div>
+        </>
+      )}
     </section>
   );
 };

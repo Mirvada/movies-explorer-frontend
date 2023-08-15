@@ -13,7 +13,8 @@ const Portfolio = () => {
             <Link
               className='portfolio__link'
               to='https://mirvada.github.io/how-to-learn/'
-              target='_blank'>
+              target='_blank'
+            >
               Статичный сайт
               <img className='portfolio__icon' src={icon} alt='перейти' />
             </Link>

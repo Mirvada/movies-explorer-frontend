@@ -8,7 +8,9 @@ import { Outlet, Link } from 'react-router-dom';
 const Header = ({ isLanding, loggedIn }) => {
   return (
     <>
-      <header className={!isLanding ? 'header' : 'header header__theme_sapphire'}>
+      <header
+        className={!isLanding ? 'header' : 'header header__theme_sapphire'}
+      >
         <Link to='/'>
           <img className='header__logo' src={logo} alt='логотип' />
         </Link>

@@ -14,11 +14,11 @@
 .header__logo {
   object-position: center;
   object-fit: cover;
-  transition: opacity .2s;
+  transition: opacity 0.2s;
 }
 
 .header__logo:hover {
-  opacity: .7;
+  opacity: 0.7;
 }
 
 @media screen and (max-width: 1200px) {

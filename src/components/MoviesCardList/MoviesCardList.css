@@ -8,6 +8,21 @@
   justify-items: center;
 }
 
+.movies__errors {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  min-height: 30vh;
+}
+
+.movies__title {
+  margin: 0;
+  font-size: 24px;
+  text-align: center;
+  color: #8b8b8b;
+}
+
 .movies__button-wrapper {
   margin: 0 auto;
 }
@@ -29,7 +44,7 @@
   border: 1px solid #424242;
   border-radius: 5px;
   background-color: transparent;
-  transition: opacity .2s;
+  transition: opacity 0.2s;
   cursor: pointer;
 }
 
@@ -50,6 +65,10 @@
     gap: 30px;
   }
 
+  .movies__errors {
+    min-height: 20vh;
+  }
+
   .movies__button-wrapper_type_saved {
     padding-bottom: 10px;
   }
@@ -60,6 +79,14 @@
     padding: 50px 0 76px;
     max-width: 300px;
     gap: 14px;
+  }
+
+  .movies__errors {
+    min-height: 30vh;
+  }
+
+  .movies__title {
+    font-size: 20px;
   }
 
   .movies__button {

@@ -1,30 +1,44 @@
 import React from 'react';
 import './SearchForm.css';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
-import { useFormAndValidation } from '../../hooks/useFormAndValidation';
 
-const SearchForm = () => {
-  const { values, handleChange, resetForm } = useFormAndValidation();
+const SearchForm = (props) => {
+  const {
+    isSavedPage,
+    handleChange,
+    handleChangeCheckbox,
+    values,
+    onSubmit,
+    error,
+  } = props;
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    resetForm();
+    onSubmit(values);
   };
 
   return (
-    <form className='seachForm' onSubmit={handleSubmit}>
-      <label className='seachForm__label'>
+    <form className='searchForm' onSubmit={handleSubmit}>
+      <label className='searchForm__label'>
         <input
-          className='seachForm__input'
+          className={`searchForm__input ${
+            error.isEmptyInput && !isSavedPage && 'searchForm__input_type_empty'
+          }`}
           type='search'
           name='search'
           value={values.search ?? ''}
           onChange={handleChange}
           placeholder='Фильм'
+          autoComplete='off'
+          required
         />
-        <button className='seachForm__button' type='submit' />
+        <button className='searchForm__button' type='submit' />
       </label>
-      <FilterCheckbox />
+      <FilterCheckbox
+        values={values}
+        onChange={handleChangeCheckbox}
+        isSavedPage={isSavedPage}
+      />
     </form>
   );
 };

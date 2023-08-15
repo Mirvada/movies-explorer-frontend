@@ -1,14 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import './MoviesCardList.css';
-import movies from '../../utils/movies.js';
-import saveMovies from '../../utils/saveMovies';
 import MoviesCard from '../MoviesCard/MoviesCard';
-import { useLocation } from 'react-router-dom';
+import Preloader from '../Preloader/Preloader';
 
-const MoviesCardList = () => {
-  const location = useLocation();
+const MoviesCardList = ({
+  movies,
+  savedMovies,
+  isSavedPage,
+  handleLikeMovie,
+  handleDeleteMovie,
+  error,
+  isSearchLoading,
+}) => {
   const [width, setWidth] = useState(window.innerWidth);
   const [showCardCount, setShowCardCount] = useState(12);
+  const [showMoreButton, setShowMoreButton] = useState(true);
+  const [page, setPage] = useState(0);
 
   useEffect(() => {
     const handleResize = (event) => {
@@ -16,11 +23,17 @@ const MoviesCardList = () => {
     };
 
     if (width <= 767) {
-      setShowCardCount(5);
+      setShowCardCount(5 + 2 * page);
     } else if (width <= 1200) {
-      setShowCardCount(8);
+      setShowCardCount(8 + 2 * page);
     } else {
-      setShowCardCount(12);
+      setShowCardCount(12 + 3 * page);
+    }
+
+    if (movies.length > showCardCount) {
+      setShowMoreButton(true);
+    } else {
+      setShowMoreButton(false);
     }
 
     window.addEventListener('resize', handleResize);
@@ -28,46 +41,95 @@ const MoviesCardList = () => {
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, [width]);
+  }, [width, page, showMoreButton, movies, showCardCount]);
 
-  const isSavedPage = location.pathname === '/saved-movies';
+  const handlePage = () => {
+    setPage((page) => page + 1);
+  };
 
-  const locationName = !isSavedPage
-    ? movies.slice(0, showCardCount).map((card) => {
+  const isSaved = (movie) => {
+    return savedMovies.reduce((acc, savedFilm) => {
+      if (savedFilm.movieId === movie.id) {
+        movie._id = savedFilm._id;
+        return true;
+      } else {
+        return acc;
+      }
+    }, false);
+  };
+
+  const renderMovies = () => {
+    if (isSavedPage) {
+      return movies.map((movie) => {
         return (
           <MoviesCard
-            key={card._id}
-            name={card.name}
-            img={card.img}
-            duration={card.duration}
-            like={card.likes}
-          />
-        );
-      })
-    : saveMovies.slice(0, showCardCount).map((card) => {
-        return (
-          <MoviesCard
-            key={card._id}
-            name={card.name}
-            img={card.img}
-            duration={card.duration}
-            like={card.likes}
+            movieData={movie}
+            isSaved={isSaved(movie)}
+            handleLikeMovie={handleLikeMovie}
+            handleDeleteMovie={handleDeleteMovie}
+            key={movie.movieId}
+            name={movie.nameRU}
+            img={movie.image}
+            alt={movie.description}
+            duration={
+              new Date(movie.duration * 60 * 1000)
+                .toISOString()
+                .substring(12, 16)
+                .split(':')
+                .join('ч ') + 'м'
+            }
           />
         );
       });
+    }
 
-  return (
+    return movies.slice(0, showCardCount).map((movie) => {
+      return (
+        <MoviesCard
+          movieData={movie}
+          isSaved={isSaved(movie)}
+          handleLikeMovie={handleLikeMovie}
+          handleDeleteMovie={handleDeleteMovie}
+          key={movie.id}
+          name={movie.nameRU}
+          img={`https://api.nomoreparties.co${movie.image.url}`}
+          alt={movie.description}
+          duration={
+            new Date(movie.duration * 60 * 1000)
+              .toISOString()
+              .substring(12, 16)
+              .split(':')
+              .join('ч ') + 'м'
+          }
+        />
+      );
+    });
+  };
+
+  return isSearchLoading ? (
+    <Preloader />
+  ) : (
     <>
-      <ul className='movies__list'>{locationName}</ul>
+      <ul className='movies__list'>
+        {error.isError ? (
+          <li className='movies__errors'>
+            <h2 className='movies__title'>{error.message}</h2>
+          </li>
+        ) : (
+          renderMovies()
+        )}
+      </ul>
       <div
         className={`movies__button-wrapper ${
           isSavedPage && 'movies__button-wrapper_type_saved'
         }`}
       >
-        {!isSavedPage && (
-          <button className='movies__button' type='button'>
+        {!isSavedPage && showMoreButton && !error.isError ? (
+          <button className='movies__button' type='button' onClick={handlePage}>
             Ещё
           </button>
+        ) : (
+          ''
         )}
       </div>
     </>
