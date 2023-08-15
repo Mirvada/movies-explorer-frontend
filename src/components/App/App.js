@@ -29,7 +29,7 @@ function App() {
   useEffect(() => {
     const token = localStorage.getItem(TOKEN_KEY);
     if (loggedIn) {
-      Promise.all([api.getUser(token), movieApi.getMovies(token), api.getSavedMovies(token)])
+      Promise.all([api.getUser(token), movieApi.getMovies(), api.getSavedMovies(token)])
         .then(([user, dataMovies, dataSavedMovie]) => {
           setCurrentUser(user)
           setMovies(dataMovies)

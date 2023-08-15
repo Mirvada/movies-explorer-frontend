@@ -5,10 +5,9 @@ const checkResponse = (res) => {
   return Promise.reject(res.status);
 };
 
-export const getMovies = (token) => {
+export const getMovies = () => {
   return fetch(`${MOVIES_API}beatfilm-movies`, {
     headers: {
-      Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json'
     }
   })
