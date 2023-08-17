@@ -19,7 +19,12 @@ const SavedMovies = ({ movies, savedMovies, handleDeleteMovie, isLoading }) => {
     handleSubmit,
     sortedMovies,
     isSearchLoading,
-  } = useSearch({ isMoviesPage: false, isSavedPage: true, movies, setError });
+  } = useSearch({
+    isMoviesPage: false,
+    isSavedPage: true,
+    movies,
+    setError,
+  });
 
   return (
     <>

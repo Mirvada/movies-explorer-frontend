@@ -2,7 +2,6 @@ import React, { useContext, useEffect } from 'react';
 import './Profile.css';
 import { useFormAndValidation } from '../../hooks/useFormAndValidation';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
-import { REGEX_EMAIL } from '../../utils/config';
 import Preloader from '../Preloader/Preloader';
 
 const Profile = ({ onSignOut, onUpdateUser, isLoading }) => {
@@ -12,8 +11,8 @@ const Profile = ({ onSignOut, onUpdateUser, isLoading }) => {
     values,
     setValues,
     handleChange,
+    handleChangeEmail,
     errors,
-    setErrors,
     isValid,
     setIsValid,
   } = useFormAndValidation({
@@ -38,20 +37,6 @@ const Profile = ({ onSignOut, onUpdateUser, isLoading }) => {
       setIsValid(true);
     }
   }, [setIsValid, currentUser, values]);
-
-  const handleChangeEmail = (evt) => {
-    handleChange(evt);
-
-    const { name, value } = evt.target;
-
-    if (name === 'email' && !REGEX_EMAIL.test(value)) {
-      setIsValid(false);
-      setErrors((prevState) => ({
-        ...prevState,
-        email: 'Почта должна быть в формате: pochta@domen.ru',
-      }));
-    }
-  };
 
   const handleSubmit = (evt) => {
     evt.preventDefault();

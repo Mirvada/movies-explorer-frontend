@@ -1,33 +1,18 @@
 import React from 'react';
 import './GeneralForm.css';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { useFormAndValidation } from '../../hooks/useFormAndValidation';
 import Preloader from '../Preloader/Preloader';
-import { REGEX_EMAIL } from '../../utils/config';
 
-const GeneralForm = ({ onRegister, onLogin, isLoading }) => {
+const GeneralForm = ({ onRegister, onLogin, isLoading, loggedIn }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const isRegisterPage = location.pathname === '/signup';
-  const { values, handleChange, errors, setErrors, isValid, setIsValid } =
+  const { values, handleChange, handleChangeEmail, errors, isValid } =
     useFormAndValidation();
 
   const handleRouteLanding = () => {
     navigate('/');
-  };
-
-  const handleChangeEmail = (evt) => {
-    handleChange(evt);
-
-    const { name, value } = evt.target;
-
-    if (name === 'email' && !REGEX_EMAIL.test(value)) {
-      setIsValid(false);
-      setErrors((prevState) => ({
-        ...prevState,
-        email: 'Почта должна быть в формате: pochta@domen.ru',
-      }));
-    }
   };
 
   const handleSubmit = (evt) => {
@@ -40,7 +25,9 @@ const GeneralForm = ({ onRegister, onLogin, isLoading }) => {
     }
   };
 
-  return (
+  return loggedIn ? (
+    <Navigate to='/movies' />
+  ) : (
     <section className='general-form'>
       <div className='general-form__logo' onClick={handleRouteLanding}></div>
       <h1 className='general-form__title'>

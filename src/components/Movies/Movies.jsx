@@ -27,6 +27,8 @@ const Movies = ({
     handleSubmit,
     sortedMovies,
     isSearchLoading,
+    setPage,
+    page,
   } = useSearch({ isMoviesPage: true, isSavedPage: false, movies, setError });
 
   return (
@@ -53,6 +55,8 @@ const Movies = ({
               handleDeleteMovie={handleDeleteMovie}
               error={error}
               isSearchLoading={isSearchLoading}
+              page={page}
+              setPage={setPage}
             />
           )}
         </section>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import Preloader from '../Preloader/Preloader';
+import { DESKTOP, MOBILE, TABLET } from '../../utils/config';
 
 const MoviesCardList = ({
   movies,
@@ -11,23 +12,24 @@ const MoviesCardList = ({
   handleDeleteMovie,
   error,
   isSearchLoading,
+  page,
+  setPage,
 }) => {
   const [width, setWidth] = useState(window.innerWidth);
   const [showCardCount, setShowCardCount] = useState(12);
   const [showMoreButton, setShowMoreButton] = useState(true);
-  const [page, setPage] = useState(0);
 
   useEffect(() => {
     const handleResize = (event) => {
       setTimeout(() => setWidth(event.target.innerWidth), 300);
     };
 
-    if (width <= 767) {
-      setShowCardCount(5 + 2 * page);
-    } else if (width <= 1200) {
-      setShowCardCount(8 + 2 * page);
+    if (width <= MOBILE.width) {
+      setShowCardCount(MOBILE.cardCount + MOBILE.more * page);
+    } else if (width <= TABLET.width) {
+      setShowCardCount(TABLET.cardCount + TABLET.more * page);
     } else {
-      setShowCardCount(12 + 3 * page);
+      setShowCardCount(DESKTOP.cardCount + DESKTOP.more * page);
     }
 
     if (movies.length > showCardCount) {

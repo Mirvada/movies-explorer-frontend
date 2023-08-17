@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './SearchForm.css';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
@@ -13,8 +13,16 @@ const SearchForm = (props) => {
     isSearchLoading,
   } = props;
 
+  const [isError, setError] = useState(false);
+
   const handleSubmit = (evt) => {
     evt.preventDefault();
+
+    if (!values.search && !isSavedPage) {
+      setError(true);
+      return setTimeout(() => setError(false), 600);
+    }
+
     onSubmit(values);
   };
 
@@ -23,15 +31,20 @@ const SearchForm = (props) => {
       <label className='searchForm__label'>
         <input
           className={`searchForm__input ${
-            error.isEmptyInput && !isSavedPage && 'searchForm__input_type_empty'
+            (error.isEmptyInput || isError) &&
+            !isSavedPage &&
+            'searchForm__input_type_empty'
           }`}
           type='search'
           name='search'
           value={values.search ?? ''}
           onChange={handleChange}
-          placeholder='Фильм'
+          placeholder={
+            isError
+              ? 'Поле не может быть пустым. Нужно ввести ключевое слово'
+              : 'Введите ключевое слово'
+          }
           autoComplete='off'
-          required
         />
         <button
           className='searchForm__button'

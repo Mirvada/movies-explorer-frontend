@@ -29,13 +29,16 @@ function App() {
   useEffect(() => {
     const token = localStorage.getItem(TOKEN_KEY);
     if (loggedIn) {
+      setIsLoading(true)
       Promise.all([api.getUser(token), movieApi.getMovies(), api.getSavedMovies(token)])
         .then(([user, dataMovies, dataSavedMovie]) => {
           setCurrentUser(user)
           setMovies(dataMovies)
           setSavedMovies(dataSavedMovie)
+
         })
         .catch((err) => console.log(`ошибка ${err}`))
+        .finally(() => setIsLoading(false))
     }
   }, [loggedIn])
 
@@ -201,8 +204,8 @@ function App() {
             }
           />
         </Route>
-        <Route path='/signup' element={<GeneralForm onRegister={handleRegister} isLoading={isLoading} />} />
-        <Route path='/signin' element={<GeneralForm onLogin={handleLogin} isLoading={isLoading} />} />
+        <Route path='/signup' element={<GeneralForm onRegister={handleRegister} isLoading={isLoading} loggedIn={loggedIn} />} />
+        <Route path='/signin' element={<GeneralForm onLogin={handleLogin} isLoading={isLoading} loggedIn={loggedIn} />} />
         <Route path='*' element={<PageNotFound />} />
       </Routes >
       <InfoTooltip onClose={closePopup} isOpen={isInfoTooltipPopupOpen} isErrors={isErrors} />

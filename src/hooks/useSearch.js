@@ -12,6 +12,8 @@ export const useSearch = ({ isMoviesPage, isSavedPage, movies, setError }) => {
 
   const [sortedMovies, setSortedMovies] = useState([]);
 
+  const [page, setPage] = useState(0);
+
   useEffect(() => {
     function checkArrayAndSetError(arr) {
       if (arr.length === 0) {
@@ -39,16 +41,40 @@ export const useSearch = ({ isMoviesPage, isSavedPage, movies, setError }) => {
       checkArrayAndSetError(searchHistoryData.movies);
     }
 
-    if (isSavedPage) {
-      setSortedMovies(movies)
-      checkArrayAndSetError(movies)
-    }
-
     if (!(SEARCH_KEY in localStorage) && !isSavedPage) {
       checkArrayAndSetError(values.movies);
     }
 
   }, [movies, setSortedMovies, setError, isMoviesPage, isSavedPage])
+
+  useEffect(() => {
+    if (isSavedPage) {
+      setError({
+        isError: false,
+        message: ''
+      })
+
+      const sortedData = sortMovies(values);
+      setSortedMovies(sortedData);
+
+      if (sortedData.length === 0) {
+        setError({
+          isError: true,
+          message: 'Ничего не найдено'
+        })
+      }
+
+      if (movies.length === 0) {
+        setError((err) => {
+          return {
+            ...err,
+            isError: true,
+            message: 'Список сохраненных фильмов пуст.'
+          }
+        })
+      }
+    }
+  }, [movies, isSavedPage]);
 
 
 
@@ -102,7 +128,7 @@ export const useSearch = ({ isMoviesPage, isSavedPage, movies, setError }) => {
       message: '',
       isEmptyInput: false,
     })
-
+    setPage(0)
     setSearchLoading(true)
 
     const sortedData = sortMovies(searchValues);
@@ -129,5 +155,5 @@ export const useSearch = ({ isMoviesPage, isSavedPage, movies, setError }) => {
     }
   }
 
-  return { values, setValues, handleChange, handleChangeCheckbox, handleSubmit, sortedMovies, isSearchLoading }
+  return { values, setValues, handleChange, handleChangeCheckbox, handleSubmit, sortedMovies, isSearchLoading, setPage, page }
 };
