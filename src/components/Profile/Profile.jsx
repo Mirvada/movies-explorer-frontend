@@ -1,19 +1,52 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import './Profile.css';
 import { useFormAndValidation } from '../../hooks/useFormAndValidation';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import Preloader from '../Preloader/Preloader';
 
-const Profile = ({ onSignOut }) => {
-  const { values, handleChange, errors, isValid, resetForm } =
-    useFormAndValidation();
+const Profile = ({ onSignOut, onUpdateUser, isLoading }) => {
+  const currentUser = useContext(CurrentUserContext);
+
+  const {
+    values,
+    setValues,
+    handleChange,
+    handleChangeEmail,
+    errors,
+    isValid,
+    setIsValid,
+  } = useFormAndValidation({
+    name: currentUser.name,
+    email: currentUser.email,
+  });
+
+  useEffect(() => {
+    setValues((userData) => ({
+      ...userData,
+      name: currentUser.name,
+      email: currentUser.email,
+    }));
+  }, [currentUser, setValues]);
+
+  useEffect(() => {
+    setIsValid(false);
+    if (
+      isValid &&
+      (values.email !== currentUser.email || values.name !== currentUser.name)
+    ) {
+      setIsValid(true);
+    }
+  }, [setIsValid, currentUser, values]);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    resetForm();
+
+    onUpdateUser(values);
   };
 
   return (
     <div className='profile'>
-      <h1 className='profile__title'>Привет, Виталий!</h1>
+      <h1 className='profile__title'>Привет, {currentUser.name}</h1>
       <form className='profile__from' onSubmit={handleSubmit}>
         <label className='profile__label'>
           Имя
@@ -26,10 +59,11 @@ const Profile = ({ onSignOut }) => {
             type='text'
             name='name'
             placeholder='Имя'
-            value={values.name ?? 'Виталий'}
+            value={values.name ?? currentUser.name}
             onChange={handleChange}
             minLength='2'
             maxLength='40'
+            required
           />
           <span className='profile__errors'>{errors.name}</span>
         </label>
@@ -45,15 +79,24 @@ const Profile = ({ onSignOut }) => {
             type='email'
             name='email'
             placeholder='Введите новый e-mail'
-            value={values.email ?? 'pochta@yandex.ru'}
-            onChange={handleChange}
+            value={values.email ?? currentUser.email}
+            onChange={handleChangeEmail}
             autoComplete='email'
+            required
           />
           <span className='profile__errors'>{errors.email}</span>
         </label>
-        <button className='profile__button' type='submit' disabled={!isValid}>
-          Редактировать
-        </button>
+        {isLoading ? (
+          <Preloader />
+        ) : (
+          <button
+            className='profile__button'
+            type='submit'
+            disabled={!isValid || isLoading}
+          >
+            Редактировать
+          </button>
+        )}
       </form>
       <button
         className='profile__button profile__button_type_logOut'

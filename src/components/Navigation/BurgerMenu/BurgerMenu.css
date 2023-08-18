@@ -5,7 +5,7 @@
   top: 0;
   right: 0;
   transform: translateX(100%);
-  transition: all .3s;
+  transition: all 0.3s;
 }
 
 .menu_active {
@@ -13,7 +13,6 @@
 }
 
 .menu__button-close {
-/*  padding: 0;*/
   width: 22px;
   height: 22px;
   position: absolute;
@@ -25,18 +24,18 @@
   background-repeat: no-repeat;
   border: none;
   cursor: pointer;
-  transition: opacity .2s;
+  transition: opacity 0.2s;
 }
 
 .menu__button-close:hover {
-  opacity: .8;
+  opacity: 0.8;
 }
 
 .menu__blur {
   width: 100vw;
   height: 100vh;
   position: absolute;
-  background-color: rgba(0, 0, 0, .3);
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .menu__content {
@@ -48,7 +47,7 @@
   justify-content: space-between;
   align-items: center;
   background-color: #202020;
-  transition: all .3s;
+  transition: all 0.3s;
 }
 
 .menu__list {
@@ -71,11 +70,11 @@
   color: #fff;
   font-size: 18px;
   font-weight: 500;
-  transition: opacity .2s;
+  transition: opacity 0.2s;
 }
 
 .menu__link:hover {
-  opacity: .7;
+  opacity: 0.7;
 }
 
 .menu__link_active {
@@ -109,7 +108,7 @@
   .menu__content {
     width: 100%;
   }
-  
+
   .menu__button-close {
     top: 17px;
     right: 18px;
@@ -129,5 +128,5 @@
 
   .menu__link_type_profile {
     margin-bottom: 50px;
-  } 
+  }
 }

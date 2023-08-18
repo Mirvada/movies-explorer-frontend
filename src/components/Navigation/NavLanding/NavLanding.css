@@ -14,11 +14,11 @@
   line-height: 16px;
   text-decoration: none;
   cursor: pointer;
-  transition: opacity .2s;
+  transition: opacity 0.2s;
 }
 
 .navigation__link:hover {
-  opacity: .7;
+  opacity: 0.7;
 }
 
 .navigation__link_type_register {
@@ -32,13 +32,13 @@
   padding: 8px 20px;
   border: none;
   border-radius: 3px;
-  background-color: #3DDC84;
+  background-color: #3ddc84;
   color: #000;
 }
 
 @media screen and (max-width: 500px) {
   .navigation__container {
-    gap: 14px
+    gap: 14px;
   }
 
   .navigation__link {

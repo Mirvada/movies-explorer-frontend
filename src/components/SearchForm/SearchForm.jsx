@@ -1,30 +1,63 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './SearchForm.css';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
-import { useFormAndValidation } from '../../hooks/useFormAndValidation';
 
-const SearchForm = () => {
-  const { values, handleChange, resetForm } = useFormAndValidation();
+const SearchForm = (props) => {
+  const {
+    isSavedPage,
+    handleChange,
+    handleChangeCheckbox,
+    values,
+    onSubmit,
+    error,
+    isSearchLoading,
+  } = props;
+
+  const [isError, setError] = useState(false);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    resetForm();
+
+    if (!values.search && !isSavedPage) {
+      setError(true);
+      return setTimeout(() => setError(false), 600);
+    }
+
+    onSubmit(values);
   };
 
   return (
-    <form className='seachForm' onSubmit={handleSubmit}>
-      <label className='seachForm__label'>
+    <form className='searchForm' onSubmit={handleSubmit}>
+      <label className='searchForm__label'>
         <input
-          className='seachForm__input'
+          className={`searchForm__input ${
+            (error.isEmptyInput || isError) &&
+            !isSavedPage &&
+            'searchForm__input_type_empty'
+          }`}
           type='search'
           name='search'
           value={values.search ?? ''}
           onChange={handleChange}
-          placeholder='Фильм'
+          placeholder={
+            isError
+              ? 'Поле не может быть пустым. Нужно ввести ключевое слово'
+              : 'Введите ключевое слово'
+          }
+          autoComplete='off'
         />
-        <button className='seachForm__button' type='submit' />
+        <button
+          className='searchForm__button'
+          type='submit'
+          disabled={isSearchLoading}
+        />
       </label>
-      <FilterCheckbox />
+      <FilterCheckbox
+        values={values}
+        onChange={handleChangeCheckbox}
+        isSavedPage={isSavedPage}
+        isSearchLoading={isSearchLoading}
+      />
     </form>
   );
 };
